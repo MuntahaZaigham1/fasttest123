@@ -10,12 +10,13 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-@Getter @Setter
+@Getter
+@Setter
 public class CreateCustomersOutput {
 
     private LocalDateTime createdAt;
-    private Integer customerId;
-    private String email;
-    private String name;
 
+    private Integer customerId;
+
+    private String name;
 }

@@ -13,18 +13,13 @@ import java.math.BigInteger;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
+@Setter
 public class CreateCustomersInput {
 
-  	private LocalDateTime createdAt;
-  
-  	@NotNull(message = "email Should not be null")
-  	@Length(max = 100, message = "email must be less than 100 characters")
-  	private String email;
-  
-  	@NotNull(message = "name Should not be null")
-  	@Length(max = 100, message = "name must be less than 100 characters")
-  	private String name;
-  
+    private LocalDateTime createdAt;
 
+    @NotNull(message = "name Should not be null")
+    @Length(max = 100, message = "name must be less than 100 characters")
+    private String name;
 }

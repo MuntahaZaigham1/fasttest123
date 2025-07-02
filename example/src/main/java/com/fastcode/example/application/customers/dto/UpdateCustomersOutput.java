@@ -10,12 +10,13 @@ import java.math.BigInteger;
 import java.io.File;
 import java.util.List;
 
-@Getter @Setter
+@Getter
+@Setter
 public class UpdateCustomersOutput {
 
-  	private LocalDateTime createdAt;
-  	private Integer customerId;
-  	private String email;
-  	private String name;
+    private LocalDateTime createdAt;
 
+    private Integer customerId;
+
+    private String name;
 }

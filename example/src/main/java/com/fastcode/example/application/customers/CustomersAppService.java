@@ -167,15 +167,6 @@ public class CustomersAppService implements ICustomersAppService {
 				   }
 				}
 			}
-            if(details.getKey().replace("%20","").trim().equals("email")) {
-				if(details.getValue().getOperator().equals("contains")) {
-					builder.and(customers.email.likeIgnoreCase("%"+ details.getValue().getSearchValue() + "%"));
-				} else if(details.getValue().getOperator().equals("equals")) {
-					builder.and(customers.email.eq(details.getValue().getSearchValue()));
-				} else if(details.getValue().getOperator().equals("notEqual")) {
-					builder.and(customers.email.ne(details.getValue().getSearchValue()));
-				}
-			}
             if(details.getKey().replace("%20","").trim().equals("name")) {
 				if(details.getValue().getOperator().equals("contains")) {
 					builder.and(customers.name.likeIgnoreCase("%"+ details.getValue().getSearchValue() + "%"));

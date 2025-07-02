@@ -10,13 +10,15 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-@Getter @Setter
+@Getter
+@Setter
 public class FindCustomersByIdOutput {
 
-  	private LocalDateTime createdAt;
-  	private Integer customerId;
-  	private String email;
-  	private String name;
-	private Long versiono;
- 
+    private LocalDateTime createdAt;
+
+    private Integer customerId;
+
+    private String name;
+
+    private Long versiono;
 }
