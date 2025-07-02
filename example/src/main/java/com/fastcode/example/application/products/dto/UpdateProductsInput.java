@@ -14,22 +14,24 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-@Getter @Setter
+@Getter
+@Setter
 public class UpdateProductsInput {
 
-  	@NotNull(message = "name Should not be null")
- 	@Length(max = 100, message = "name must be less than 100 characters")
-  	private String name;
-  	
-  	@NotNull(message = "price Should not be null")
-  	private BigDecimal price;
-  	
-  	@NotNull(message = "productId Should not be null")
-  	private Integer productId;
-  	
-  	@NotNull(message = "stock Should not be null")
-  	private Integer stock;
-  	
-  	private Long versiono;
-  
+    @NotNull(message = "name Should not be null")
+    @Length(max = 100, message = "name must be less than 100 characters")
+    private String name;
+
+    @NotNull(message = "price Should not be null")
+    private BigDecimal price;
+
+    @NotNull(message = "productId Should not be null")
+    private Integer productId;
+
+    @NotNull(message = "stock Should not be null")
+    private Integer stock;
+
+    private Long versiono;
+
+    private Long newcol;
 }

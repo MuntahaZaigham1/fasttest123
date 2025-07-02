@@ -10,12 +10,17 @@ import java.math.BigInteger;
 import java.io.File;
 import java.util.List;
 
-@Getter @Setter
+@Getter
+@Setter
 public class UpdateProductsOutput {
 
-  	private String name;
-  	private BigDecimal price;
-  	private Integer productId;
-  	private Integer stock;
+    private String name;
 
+    private BigDecimal price;
+
+    private Integer productId;
+
+    private Integer stock;
+
+    private Long newcol;
 }

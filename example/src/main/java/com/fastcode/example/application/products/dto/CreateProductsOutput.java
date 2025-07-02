@@ -10,12 +10,17 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-@Getter @Setter
+@Getter
+@Setter
 public class CreateProductsOutput {
 
     private String name;
+
     private BigDecimal price;
+
     private Integer productId;
+
     private Integer stock;
 
+    private Long newcol;
 }

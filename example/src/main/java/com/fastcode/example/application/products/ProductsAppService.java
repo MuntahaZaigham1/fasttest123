@@ -115,12 +115,10 @@ public class ProductsAppService implements IProductsAppService {
 	
 	protected void checkProperties(List<String> list) throws MalformedURLException  {
 		for (int i = 0; i < list.size(); i++) {
-			if(!(
-				list.get(i).replace("%20","").trim().equals("name") ||
+			if(!(list.get(i).replace("%20","").trim().equals("name") ||
 				list.get(i).replace("%20","").trim().equals("price") ||
 				list.get(i).replace("%20","").trim().equals("productId") ||
-				list.get(i).replace("%20","").trim().equals("stock")
-			)) 
+				list.get(i).replace("%20","").trim().equals("stock") || list.get(i).replace("%20", "").trim().equals("newcol"))) 
 			{
 			 throw new MalformedURLException("Wrong URL Format: Property " + list.get(i) + " not found!" );
 			}
@@ -194,7 +192,22 @@ public class ProductsAppService implements IProductsAppService {
 				   }
 				}
 			}
-	    
+	  if (details.getKey().replace("%20", "").trim().equals("newcol")) {
+	      if (details.getValue().getOperator().equals("equals")) {
+	          builder.and(products.newcol.eq(Long.valueOf(details.getValue().getSearchValue())));
+	      } else if (details.getValue().getOperator().equals("notEqual")) {
+	          builder.and(products.newcol.ne(Long.valueOf(details.getValue().getSearchValue())));
+	      } else if (details.getValue().getOperator().equals("range")) {
+	          if (org.apache.commons.lang3.StringUtils.isNumeric(details.getValue().getStartingValue()) && org.apache.commons.lang3.StringUtils.isNumeric(details.getValue().getEndingValue())) {
+	              builder.and(products.newcol.between(Long.valueOf(details.getValue().getStartingValue()), Long.valueOf(details.getValue().getEndingValue())));
+	          } else if (org.apache.commons.lang3.StringUtils.isNumeric(details.getValue().getStartingValue())) {
+	              builder.and(products.newcol.goe(Long.valueOf(details.getValue().getStartingValue())));
+	          } else if (org.apache.commons.lang3.StringUtils.isNumeric(details.getValue().getEndingValue())) {
+	              builder.and(products.newcol.loe(Long.valueOf(details.getValue().getEndingValue())));
+	          }
+	      }
+	  }
+   
 		}
 		
 		return builder;
