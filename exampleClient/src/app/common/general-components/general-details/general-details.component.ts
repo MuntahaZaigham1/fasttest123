@@ -13,7 +13,7 @@ export class GeneralDetailsComponent implements OnInit {
 	@Input() fields: any[];
 	@Input() parentAssociations: IAssociationEntry[];
 	@Input() childAssociations: any;
-		@Input() IsUpdatePermission: any;
+	
 	@Input() loading: any;
 	@Input() idParam: any;
 	@Input() title: any;

@@ -16,7 +16,7 @@
 		</mat-card-content>
 		<mat-card-actions class="fc-text-right">
 			<button name="save" mat-raised-button color="primary" (click)="submit()"
-				[disabled]="!itemForm.valid || loading || !IsCreatePermission">{{'GENERAL.ACTIONS.SAVE' | translate}}</button>
+				[disabled]="!itemForm.valid || loading ">{{'GENERAL.ACTIONS.SAVE' | translate}}</button>
 		</mat-card-actions>
 	</mat-card>
 </div>

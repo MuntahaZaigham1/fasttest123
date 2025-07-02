@@ -27,54 +27,7 @@
       "UPDATE": "An error occurred while updating"
     }
   },
-  "HOME": "Home",
-  "LOGIN": {
-  	"LOGIN": "Login",
-  	"ERRORS": {
-  		"INVALID-CREDENTIALS": "Wrong username or password."
-    },
-    "FIELDS": {
-      "USERNAME": "Username",
-      "PASSWORD": "Password"
-    },
-    "MESSAGES": {
-      "FORGOT-PASSWORD": "forgot password?",
-      "REGISTER": "Don't have an account? Register <a href=\"javascript:;\"> here.</a>",
-      "OIDC-TITLE": "Login via your OpenID Connect provider."
-    }
-  },
-  "ACCOUNT": {
-
-    "FORGOT-PASSWORD": {
-      "TITLE": "Forgot password",
-      "HEADING": "Enter your user account's verified email address and we will send you a password reset link.",
-      "SEND-EMAIL-BTN": "Send password reset email",
-      "EMAIL-SENT-MESSAGE": "Check your email for a link to reset your password. If it doesn’t appear within a few minutes, check your spam folder.",
-      "GO-TO-LOGIN": "Go to login"
-    },
-    "RESET-PASSWORD": {
-      "TITLE": "Reset Password",
-      "RESET-MESSAGE": "Your password is reset.",
-      "FIELDS": {
-        "NEW-PASSWORD": "New password",
-        "CONFIRM-PASSWORD": "Confirm password"
-      }
-    },
-    "UPDATE-PASSWORD": {
-      "TITLE": "Update Password",
-      "UPDATED-MESSAGE": "Your password is updated.",
-      "FIELDS": {
-        "OLD-PASSWORD": "Old password",
-        "NEW-PASSWORD": "New password",
-        "CONFIRM-PASSWORD": "Confirm password"
-      }
-    },
-    "UPDATE-PROFILE": {
-      "TITLE": "Update Profile",
-      "UPDATED-MESSAGE": "Your profile is updated."
-    }
-  },
-  "en": "English",
+  "HOME": "Home",  "en": "English",
   "fr": "French",
   "MainNav": {
     "Home": "Home",
@@ -89,12 +42,7 @@
     "Tools": "Tools",
     "Administration": "Administration",
     "About": "About",
-    "API": "API",
-    "MENU": {
-      "UPDATE-PASSWORD": "Update Password",
-      "UPDATE-PROFILE": "Update Profile",
-      "LOGOUT": "Logout"
-    }  },
+    "API": "API"  },
   "CONFIRM-DIALOG": {
     "TITLE":"Confirm",
     "MESSAGE": "Are you sure you want to proceed?",

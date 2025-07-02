@@ -113,36 +113,6 @@ describe('BaseNewComponent', () => {
       expect(component.dialogRef.close).toHaveBeenCalledWith(null);
     });
 	    
-    it('should set all permissions', async () => {
-      spyOn(component.globalPermissionService, 'hasPermissionOnEntity')
-        .withArgs('Dummy', 'CREATE')
-        .and.returnValue(true);
-      component.setPermissions();
-      fixture.detectChanges();
-
-      expect(component.IsCreatePermission).toBe(true);
-      expect(component.IsReadPermission).toBe(true);
-      expect(component.IsDeletePermission).toBe(true);
-      expect(component.IsUpdatePermission).toBe(true);
-    });
-
-    it('should set all permissions except Create', async () => {
-      spyOn(component.globalPermissionService, 'hasPermissionOnEntity')
-        .withArgs('Dummy', 'CREATE')
-        .and.returnValue(false)
-        .withArgs('Dummy', 'UPDATE')
-        .and.returnValue(true)
-        .withArgs('Dummy', 'DELETE')
-        .and.returnValue(true);
-      component.setPermissions();
-      fixture.detectChanges();
-
-      expect(component.IsCreatePermission).toBe(false);
-      expect(component.IsReadPermission).toBe(true);
-      expect(component.IsDeletePermission).toBe(true);
-      expect(component.IsUpdatePermission).toBe(true);
-    });
-    
     it('should be able to deactivate', async () => {
       expect(component.canDeactivate()).toBe(true);
     });

@@ -8,7 +8,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { BaseListComponent, PickerDialogService } from 'src/app/common/shared';
 import { ErrorService } from 'src/app/core/services/error.service';
 import { ListColumnType } from 'src/app/common/shared/models/ilistColumn';
-import { GlobalPermissionService } from 'src/app/core/services/global-permission.service';
 import { Globals } from 'src/app/core/services/globals';
 
 @Component({
@@ -28,7 +27,7 @@ export class DummyListComponent extends BaseListComponent<IDummy> implements OnI
     public dataService: DummyService,
     public parentService: ParentService,
     public errorService: ErrorService,
-    public globalPermissionService: GlobalPermissionService
+
   ) {
     super(router, route, dialog, global, changeDetectorRefs, pickerDialogService, dataService, errorService);
   }

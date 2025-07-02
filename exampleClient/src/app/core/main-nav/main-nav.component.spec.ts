@@ -6,12 +6,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MainNavComponent } from './main-nav.component';
 import { TestingModule, EntryComponents } from 'src/testing/utils';
 
-import { UserService } from 'src/app/admin/user-management/user';
-import { LoginExtendedComponent } from 'src/app/extended/core/login/login.component';
-import { HttpLoaderFactory } from 'src/app/app.module';
-import { HttpClient } from '@angular/common/http';
-import { AuthGuard } from '../guards/auth.guard';
-import { of } from 'rxjs';
 import { Router, Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { DashboardExtendedComponent } from 'src/app/extended/core/dashboard';
@@ -20,10 +14,7 @@ describe('MainNavComponent', () => {
   let component: MainNavComponent;
   let fixture: ComponentFixture<MainNavComponent>;
   const routes: Routes = [
-    { path: '', component: LoginExtendedComponent, pathMatch: 'full' },
-    { path: 'login', component: LoginExtendedComponent },
-    { path: 'login/:returnUrl', component: LoginExtendedComponent },
-    { path: 'dashboard', component: DashboardExtendedComponent, canActivate: [AuthGuard] },
+    { path: 'dashboard', component: DashboardExtendedComponent},
   ];
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
@@ -33,7 +24,7 @@ describe('MainNavComponent', () => {
              RouterTestingModule.withRoutes(routes),
             ],
       declarations: [MainNavComponent].concat(EntryComponents),
-      providers: [UserService]
+
     })
     .compileComponents();
 
@@ -50,14 +41,12 @@ describe('MainNavComponent', () => {
   it('should switch the language', () => {
     spyOn(component.translate, 'use');
     spyOn(Storage.prototype, 'setItem').and.returnValue();
-    spyOn(component.userService, 'updateLanguage').and.returnValue(of(null));
 
     let lang = 'en';
     component.switchLanguage(lang);
 
     expect(component.translate.use).toHaveBeenCalledWith(lang);
     expect(localStorage.setItem).toHaveBeenCalledWith('selectedLanguage',lang);
-    expect(component.userService.updateLanguage).toHaveBeenCalledWith(lang);
     expect(component.selectedLanguage).toEqual(lang);
   });
 
@@ -91,32 +80,6 @@ describe('MainNavComponent', () => {
     expect(component.translate.use).toHaveBeenCalledTimes(0);
   });
   
-  it('should logout the user and navigate to home', async () => {
-    const router = TestBed.inject(Router);
-    let themes = ['theme1'];
-
-    component.themes = themes;
-    spyOn(component.authenticationService, 'logout');
-    spyOn(component, 'changeTheme').and.returnValue();
-    spyOn(component.translate, 'use');
-    spyOn(router, 'navigate').and.stub();
-
-    component.logout();
-      
-    expect(router.navigate).toHaveBeenCalledWith(['/']);
-
-    expect(component.changeTheme).toHaveBeenCalledWith(themes[0], false);
-    expect(component.authenticationService.logout).toHaveBeenCalled();
-    expect(component.translate.use).toHaveBeenCalledTimes(0);
-  });
-
-  it('should redirect to login page', async () => {
-    const router = TestBed.inject(Router);
-    spyOn(router, 'navigate').and.stub();
-
-    component.login();
-    expect(router.navigate).toHaveBeenCalledWith(['/login'], { queryParams: { returnUrl: 'dashboard' } });
-  });
   it('should change theme without calling backend service', async () => {
 
     let themes = ['newTheme', 'appliedTheme'];
@@ -129,20 +92,5 @@ describe('MainNavComponent', () => {
     expect(document.body.classList.contains(themes[1])).toBeFalsy();
   });
 
-  it('should change theme and call backend service', async () => {
-
-    let themes = ['newTheme', 'appliedTheme'];
-    spyOn(component.userService, 'updateTheme').and.returnValue(of(null));
-    spyOn(Storage.prototype, 'setItem').and.returnValue();
-
-    component.themes = themes;
-    document.body.classList.add(themes[1]);
-
-    component.changeTheme(themes[0], true);
-
-    expect(document.body.classList.contains(themes[0])).toBeTruthy();
-    expect(document.body.classList.contains(themes[1])).toBeFalsy();
-    expect(localStorage.setItem).toHaveBeenCalledWith('theme', themes[0]);
-  });
 
 });

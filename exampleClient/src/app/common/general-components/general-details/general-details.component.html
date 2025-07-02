@@ -38,7 +38,7 @@
 					<button name="back" mat-raised-button color="basic" (click)="back()">
 						{{'GENERAL.ACTIONS.CANCEL' | translate}} </button>
 					<button name="save" mat-raised-button color="primary"
-						[disabled]="!itemForm.valid || loading || !IsUpdatePermission" (click)="submit()">
+						[disabled]="!itemForm.valid || loading " (click)="submit()">
 						{{'GENERAL.ACTIONS.SAVE' | translate}}
 					</button>
 				</div>

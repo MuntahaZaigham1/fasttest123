@@ -5,14 +5,11 @@ import { Router, Event } from '@angular/router';
 import { MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
 import {
 	Entities,
-	AuthEntities,
+
 
 
 
 	} from './entities';
-import { AuthenticationService } from 'src/app/core/services/authentication.service';
-import { GlobalPermissionService } from 'src/app/core/services/global-permission.service';
-import { UserService } from 'src/app/admin/user-management/user';
 
 import { Globals } from 'src/app/core/services/globals';
 
@@ -39,42 +36,18 @@ export class MainNavComponent {
 	username: any = "";
 
 	
-	permissions: any = {};
-	authEntityList = AuthEntities;
-	allEntities: string[] = [
-		...AuthEntities,
-		...Entities,
-
-
-
-	];
-	modules: any = {
-
-
-
-	}
 	
 	constructor(
 		public router: Router,
 		public translate: TranslateService,
 		public Global: Globals,
 
-		public authenticationService: AuthenticationService,
-		public globalPermissionService: GlobalPermissionService,
-		public userService: UserService,
 	) {
 
 		this.isSmallDevice$ = Global.isSmallDevice$;
 		this.isMediumDevice$ = Global.isMediumDevice$;
 		
 		this.selectedLanguage = localStorage.getItem('selectedLanguage');
-		this.authenticationService.permissionsChange.subscribe(() => {
-			this.setPermissions();
-		});
-		this.setPermissions();
-		this.authenticationService.preferenceChange.subscribe(() => {
-			this.setPreferences();
-		});
 		this.setPreferences();
 		
 	
@@ -89,8 +62,7 @@ export class MainNavComponent {
 		this.translate.use(language);
 	    localStorage.setItem('selectedLanguage', language);
 	    this.selectedLanguage = language;
-	    this.userService.updateLanguage(language).subscribe(data => {
-		});
+
 	}
 	
 	setPreferences() {
@@ -109,38 +81,6 @@ export class MainNavComponent {
 		}
 	}
 	
-	setPermissions(){
-		if(this.authenticationService.decodeToken()){
-			this.username = this.authenticationService.decodeToken().sub;
-		}
-		this.allEntities.forEach(entity => {
-			this.permissions[entity] = this.globalPermissionService.hasPermissionOnEntity(entity,"READ");
-		});
-		this.setModulesVisibility();
-	}
-	
-	setModulesVisibility() {
-		Object.keys(this.modules).forEach(module => {
-			let modulePermission = `show${module[0].toUpperCase() + module.slice(1)}`
-			this.permissions[modulePermission] = false;
-			this.modules[module].forEach((entity: any) => {
-				if (this.permissions[entity]) {
-					this.permissions[modulePermission] = true;
-					this.permissions['showTools'] = true;
-				}
-			});
-		});
-	}
-	
-	login() {
-		this.router.navigate(['/login'], { queryParams: { returnUrl: 'dashboard' } });
-  }
-  
-  logout() {
-		this.authenticationService.logout();
-		this.changeTheme(this.themes[0], false);
-		this.router.navigate(['/']);
-	}
 	changeTheme(theme: any, updatePreference: boolean) {
 		console.log("add css class");
 		for (let i = 0; i < this.themes.length; i++) {
@@ -150,11 +90,7 @@ export class MainNavComponent {
 		}
 		document.body.classList.add(theme);
     	localStorage.setItem('theme', theme);
-		if (updatePreference) {
-			this.userService.updateTheme(theme).subscribe(data => {
-				console.log(data);
-			});
-		}
+
 	}
 	
 }

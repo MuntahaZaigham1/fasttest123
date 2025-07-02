@@ -10,17 +10,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SwaggerComponent } from './core/swagger/swagger.component';
 import { ErrorPageComponent  } from './core/error-page/error-page.component';
 import { JwtInterceptor } from './core/services/jwt-interceptor';
-/** core components and filters for authorization and authentication **/
-
-import { AuthenticationService } from './core/services/authentication.service';
-import { AuthGuard } from './core/guards/auth.guard';
-import { JwtErrorInterceptor } from './core/services/jwt-error-interceptor';
-import { GlobalPermissionService } from './core/services/global-permission.service';
-
-// import { LoginComponent } from './core/login/login.component';
-import { LoginExtendedComponent } from './extended/core/login/login.component';
-
-/** end of core components and filters for authorization and authentication **/
 import { routingModule } from './app.routing';
 import { SharedModule } from 'src/app/common/shared';
 // import { CoreModule } from './core/core.module';
@@ -59,10 +48,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   ],
   providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-		AuthenticationService,
-		GlobalPermissionService,
-		{ provide: HTTP_INTERCEPTORS, useClass: JwtErrorInterceptor, multi: true },
-		AuthGuard,
 	],
   bootstrap: [AppComponent],
   entryComponents: [

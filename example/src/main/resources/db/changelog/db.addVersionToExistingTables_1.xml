@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+         
+		<changeSet author="fastCode, Inc" id="orders100">
+	    <preConditions onFail="MARK_RAN">
+        	<tableExists tableName="orders" schemaName="public"/>
+        </preConditions>
+	    <addColumn tableName="orders">
+	    	<column name="versiono" type="BIGINT" defaultValue="0">
+	      		<constraints nullable="false"/>
+			</column>
+	   	</addColumn>
+	</changeSet>
+	<changeSet author="fastCode, Inc" id="products101">
+	    <preConditions onFail="MARK_RAN">
+        	<tableExists tableName="products" schemaName="public"/>
+        </preConditions>
+	    <addColumn tableName="products">
+	    	<column name="versiono" type="BIGINT" defaultValue="0">
+	      		<constraints nullable="false"/>
+			</column>
+	   	</addColumn>
+	</changeSet>
+	<changeSet author="fastCode, Inc" id="suppliers102">
+	    <preConditions onFail="MARK_RAN">
+        	<tableExists tableName="suppliers" schemaName="public"/>
+        </preConditions>
+	    <addColumn tableName="suppliers">
+	    	<column name="versiono" type="BIGINT" defaultValue="0">
+	      		<constraints nullable="false"/>
+			</column>
+	   	</addColumn>
+	</changeSet>
+	<changeSet author="fastCode, Inc" id="customers103">
+	    <preConditions onFail="MARK_RAN">
+        	<tableExists tableName="customers" schemaName="public"/>
+        </preConditions>
+	    <addColumn tableName="customers">
+	    	<column name="versiono" type="BIGINT" defaultValue="0">
+	      		<constraints nullable="false"/>
+			</column>
+	   	</addColumn>
+	</changeSet>
+	<changeSet author="fastCode, Inc" id="orderitems104">
+	    <preConditions onFail="MARK_RAN">
+        	<tableExists tableName="orderitems" schemaName="public"/>
+        </preConditions>
+	    <addColumn tableName="orderitems">
+	    	<column name="versiono" type="BIGINT" defaultValue="0">
+	      		<constraints nullable="false"/>
+			</column>
+	   	</addColumn>
+	</changeSet>
+	<changeSet author="fastCode, Inc" id="productsuppliers105">
+	    <preConditions onFail="MARK_RAN">
+        	<tableExists tableName="productsuppliers" schemaName="public"/>
+        </preConditions>
+	    <addColumn tableName="productsuppliers">
+	    	<column name="versiono" type="BIGINT" defaultValue="0">
+	      		<constraints nullable="false"/>
+			</column>
+	   	</addColumn>
+	</changeSet>
+         
+</databaseChangeLog>

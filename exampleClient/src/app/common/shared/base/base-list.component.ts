@@ -10,7 +10,6 @@ import { PickerDialogService } from '../components/picker/picker-dialog.service'
 import { of as observableOf, Observable } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { ISearchField } from '../components/list-filters/ISearchCriteria';
-import { GlobalPermissionService } from 'src/app/core/services/global-permission.service';
 import { ErrorService } from 'src/app/core/services/error.service';
 import { ServiceUtils } from '../utils/serviceUtils';
 import { ConfirmDialogComponent } from '../components/confirm-dialog/confirm-dialog.component';
@@ -46,11 +45,6 @@ export class BaseListComponent<E> implements OnInit {
 
   selectedColumns: IListColumn[] = [];
   displayedColumns: string[] = [];
-  IsReadPermission: Boolean = false;
-  IsCreatePermission: Boolean = false;
-  IsUpdatePermission: Boolean = false;
-  IsDeletePermission: Boolean = false;
-  globalPermissionService: GlobalPermissionService;
   isMediumDeviceOrLess: boolean;
   dialogRef: MatDialogRef<any>;
   deleteDialogRef: MatDialogRef<ConfirmDialogComponent>;
@@ -90,34 +84,12 @@ export class BaseListComponent<E> implements OnInit {
     public errorService: ErrorService
   ) {}
 
-  /**
-   * Sets CRUD permissions for entity for
-   * currently logged in user.
-   */
-  setPermissions = () => {
-    if (this.globalPermissionService) {
-      let entityName = this.entityName.startsWith('I') ? this.entityName.substr(1) : this.entityName;
-      this.IsCreatePermission = this.globalPermissionService.hasPermissionOnEntity(entityName, 'CREATE');
-      if (this.IsCreatePermission) {
-        this.IsReadPermission = true;
-        this.IsDeletePermission = true;
-        this.IsUpdatePermission = true;
-      } else {
-        this.IsDeletePermission = this.globalPermissionService.hasPermissionOnEntity(entityName, 'DELETE');
-        this.IsUpdatePermission = this.globalPermissionService.hasPermissionOnEntity(entityName, 'UPDATE');
-        this.IsReadPermission =
-          this.IsDeletePermission || this.IsUpdatePermission
-            ? true
-            : this.globalPermissionService.hasPermissionOnEntity(entityName, 'READ');
-      }
-    }
-  };
   ngOnInit() {
     if(this.generalListComp) {
       this.sort = this.generalListComp.sort;
     }
     this.url = this.dataService.suffix.toLowerCase();
-    this.setPermissions();
+
     this.manageScreenResizing();
     this.checkForAssociations(this.route.snapshot.queryParams);
     this.setSort();

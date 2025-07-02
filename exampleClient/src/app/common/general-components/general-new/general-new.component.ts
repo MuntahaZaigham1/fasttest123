@@ -9,7 +9,7 @@ import { IAssociationEntry } from 'src/app/common/shared';
 	styleUrls: ['./general-new.component.scss']
 })
 export class GeneralNewComponent implements OnInit {
-		@Input() IsCreatePermission: any;
+	
 	@Input() itemForm: FormGroup;
 	@Input() fields: any[];
 	@Input() parentAssociations: IAssociationEntry[];

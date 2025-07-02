@@ -11,8 +11,7 @@ import { MatSort } from '@angular/material/sort';
 })
 export class GeneralListComponent implements OnInit {
 
-		@Input() IsCreatePermission: boolean;
-	@Input() IsDeletePermission: boolean;
+	
 	@Input() items: any[];
 	@Input() selectedColumns: any[];
 	@Input() displayedColumns: any[];

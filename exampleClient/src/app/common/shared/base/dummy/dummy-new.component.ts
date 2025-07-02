@@ -7,7 +7,6 @@ import { FormBuilder } from '@angular/forms';
 import { BaseNewComponent, PickerDialogService } from 'src/app/common/shared';
 import { ErrorService } from 'src/app/core/services/error.service';
 import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { GlobalPermissionService } from 'src/app/core/services/global-permission.service';
 
 @Component({
   selector: 'app-dummy-new',
@@ -25,7 +24,7 @@ export class DummyNewComponent extends BaseNewComponent<IDummy> implements OnIni
     public pickerDialogService: PickerDialogService,
     public dataService: DummyService,
     public parentService: ParentService,
-    public globalPermissionService: GlobalPermissionService,
+
     public errorService: ErrorService
   ) {
     super(formBuilder, router, route, dialog, dialogRef, data, pickerDialogService, dataService, errorService);

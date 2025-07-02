@@ -7,7 +7,6 @@ import { PickerDialogService, BaseDetailsComponent } from 'src/app/common/shared
 import { ErrorService } from 'src/app/core/services/error.service';
 import { IDummy } from './idummy';
 import { DummyService, ParentService } from './dummy.service';
-import { GlobalPermissionService } from 'src/app/core/services/global-permission.service';
 
 @Component({
   selector: 'app-dummy-details',
@@ -24,7 +23,7 @@ export class DummyDetailsComponent extends BaseDetailsComponent<IDummy> implemen
     public dialog: MatDialog,
     public dataService: DummyService,
     public parentService: ParentService,
-    public globalPermissionService: GlobalPermissionService,
+
     public pickerDialogService: PickerDialogService,
     public errorService: ErrorService
   ) {

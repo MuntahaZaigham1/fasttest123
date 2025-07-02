@@ -182,34 +182,7 @@ describe('DummyListComponent', () => {
     expect(component.errorService.showError).toHaveBeenCalled();
   });
 
-    it('should set all permissions', async () => {
-    spyOn(component.globalPermissionService, 'hasPermissionOnEntity').withArgs('Dummy', 'CREATE').and.returnValue(true);
-    component.setPermissions();
-    fixture.detectChanges();
-
-    expect(component.IsCreatePermission).toBe(true);
-    expect(component.IsReadPermission).toBe(true);
-    expect(component.IsDeletePermission).toBe(true);
-    expect(component.IsUpdatePermission).toBe(true);
-  });
-
-  it('should set all permissions except Create', async () => {
-    spyOn(component.globalPermissionService, 'hasPermissionOnEntity')
-      .withArgs('Dummy', 'CREATE')
-      .and.returnValue(false)
-      .withArgs('Dummy', 'UPDATE')
-      .and.returnValue(true)
-      .withArgs('Dummy', 'DELETE')
-      .and.returnValue(true);
-    component.setPermissions();
-    fixture.detectChanges();
-
-    expect(component.IsCreatePermission).toBe(false);
-    expect(component.IsReadPermission).toBe(true);
-    expect(component.IsDeletePermission).toBe(true);
-    expect(component.IsUpdatePermission).toBe(true);
-  });
-  it('should call setSort and set item list when some association is selected', async () => {
+    it('should call setSort and set item list when some association is selected', async () => {
     component.selectedAssociation = component.associations[0];
     if(component.selectedAssociation.column){
       component.selectedAssociation.column[0].value = '1';
